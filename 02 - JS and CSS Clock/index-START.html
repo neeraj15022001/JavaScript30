@@ -20,7 +20,7 @@
     html {
       background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
       background-size: cover;
-      font-family: 'helvetica neue';
+      font-family: 'helvetica neue',serif;
       text-align: center;
       font-size: 10px;
     }
@@ -47,6 +47,7 @@
         inset 0 0 0 3px #EFEFEF,
         inset 0 0 10px black,
         0 0 10px rgba(0,0,0,0.2);
+      transform: rotate(90deg);
     }
 
     .clock-face {
@@ -62,12 +63,50 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform: rotate(0deg);
+      transform-origin: 100%;
+      transition: all 0.07s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
 
   <script>
-
+    const secondHand = document.querySelector(".second-hand")
+    const minsHand = document.querySelector(".min-hand")
+    const hourHand = document.querySelector(".hour-hand")
+    function setTime() {
+      const time = new Date();
+      const seconds = time.getSeconds();
+      const secondsDegree = ((seconds/60)*360)
+      if(seconds === 59) {
+        console.log("here")
+        document.querySelector(".hand").style.transition = "none"
+      } else {
+        document.querySelector(".hand").style.transition = "all 0.07s"
+      }
+      secondHand.style.transform = `rotate(${secondsDegree}deg)`
+      // console.log(seconds, secondsDegree)
+      const mins = time.getMinutes();
+      const minsDegree = (mins/60)*360;
+      if(mins === 60) {
+        document.querySelector(".hand").style.transition = "none"
+      } else {
+        document.querySelector(".hand").style.transition = "all 0.07s"
+      }
+      minsHand.style.transform = `rotate(${minsDegree}deg)`
+      // console.log(mins, minsDegree)
+      const hours = time.getHours() % 12;
+      const hourDegree = ((hours)/12)*360;
+      if(hours === 12) {
+        document.querySelector(".hand").style.transition = "none"
+      } else {
+        document.querySelector(".hand").style.transition = "all 0.07s"
+      }
+      hourHand.style.transform = `rotate(${hourDegree}deg)`
+      // console.log(hours,hourDegree)
+    }
+    setInterval(setTime, 1000)
 
   </script>
 </body>
