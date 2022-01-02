@@ -1,46 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
+    <meta charset="UTF-8">
+    <title>Console Tricks!</title>
+    <link rel="shortcut icon" href="data:image/png;base64,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" type="image/x-icon">
 </head>
 <body>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+<p onClick="makeGreen()">×BREAK×DOWN×</p>
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+<script>
+    const dogs = [{name: 'Snickers', age: 2}, {name: 'hugo', age: 8}];
 
     function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
+        const p = document.querySelector('p');
+        p.style.color = '#BADA55';
+        p.style.fontSize = '50px';
     }
 
     // Regular
-
+    console.log("Neeraj")
     // Interpolated
+    console.log(`I am ${"Neeraj"} Gupta`)
 
     // Styled
+    console.log("%c I am Neeraj Gupta", 'background-color: green; color: white');
 
     // warning!
+    console.warn("This is very dangerous")
 
     // Error :|
-
+    console.error("This contains malware")
     // Info
-
+    console.info("This page is very informative")
     // Testing
-
+    console.assert(1 === 2, "This is not right")
     // clearing
-
+    console.clear()
     // Viewing DOM Elements
-
+    const p = document.querySelector("p")
+    console.log(p)
+    console.dir(p)
+    console.clear()
     // Grouping together
 
+    dogs.forEach(dog => {
+        console.groupCollapsed(`${dog.name}`);
+        // console.group(`${dog.name}`);
+        console.log(`Name of dog - ${dog.name}`)
+        console.log(`${dog.name} is ${dog.age} years old`)
+        console.groupEnd()
+    })
     // counting
-
+    console.count("Neeraj")
+    console.count("Gupta")
+    console.count("Gupta")
+    console.count("Neeraj")
+    console.count("Gupta")
+    console.count("Neeraj")
+    console.count("Neeraj")
+    console.count("Gupta")
+    console.count("Neeraj")
     // timing
+    console.time("fetching data")
+    fetch("https://api.kanye.rest")
+        .then(res => res.json())
+        .then(data => {
+            console.timeEnd("fetching data")
+            console.table(data)
+        })
 
-  </script>
+</script>
 </body>
 </html>
