@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JS Reference VS Copy</title>
+    <meta charset="UTF-8">
+    <title>JS Reference VS Copy</title>
 </head>
 <body>
 
-  <script>
+<script>
     // start with strings, numbers and booleans
+    let number1 = 20;
+    let number2 = number1;
+    console.log(number1, number2)
+    number2 = 30;
+    console.log(number1, number2)
 
+    let name1 = "Neeraj";
+    let name2 = name1;
+    console.log(name1, name2)
+    name2 = "Gupta";
+    console.log(name1, name2)
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
-
+    // const arr1 = players.splice();
+    const arr2 = [].concat(players);
+    const arr3 = [...players]
+    const arr4 = Array.from(players)
+    console.log(players, arr2, arr3, arr4)
     // and we want to make a copy of it.
 
     // You might think we can just do something like this:
@@ -38,19 +52,31 @@
 
     // with Objects
     const person = {
-      name: 'Wes Bos',
-      age: 80
+        name: 'Wes Bos',
+        age: 80,
+        social: {
+            twitter: "@neeraj15022001"
+        }
     };
 
     // and think we make a copy:
-
     // how do we take a copy instead?
+    const cap2 = Object.assign({}, person, {number: 99})
+    // console.log(person, cap2)
 
     // We will hopefully soon see the object ...spread
-
+    //Copy one level down for whole copying reference use clone deep
+    const cap3 = {...person}
+    cap3.number = 100
+    cap3.age = 500
+    cap3.social.twitter = "@dummy"
+    console.log(person, cap3)
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
-
-  </script>
+    //Cheat way is using JSON.parse
+    const dev2 = JSON.parse(JSON.stringify(person))
+    dev2.social.twitter = "@test"
+    console.log(person, dev2)
+</script>
 
 </body>
 </html>
